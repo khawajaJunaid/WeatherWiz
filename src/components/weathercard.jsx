@@ -33,7 +33,7 @@ function WeatherWizard  ()
         {
           fetchApi(search);}, 300000);
           console.log(intervalId);
-
+    // eslint-disable-next-line
     }, [value]
 
     )
