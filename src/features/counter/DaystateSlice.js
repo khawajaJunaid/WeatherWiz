@@ -12,7 +12,7 @@ export const DaystateSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
     
-      state.daystate = action.payload
+      state.Daystate = action.payload
     },
   },
     
