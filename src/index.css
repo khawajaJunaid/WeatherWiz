@@ -1,0 +1,28 @@
+body
+{
+    background-color:#fff;
+
+
+}
+
+.popup-card {
+    background: #f4f5f7;
+    padding: 24px 32px 24px  24px;
+    color: #1D3763;
+    max-width: 80% !important;
+    box-shadow: 0 100vh 0 100vw rgb(0 0 0 / 80%); 
+    border-radius: 10px !important;
+    /* width: 100%; */
+    opacity: blur;
+    height: 80% !important;
+    overflow: auto;
+    align-items: center;
+    justify-content: start;
+  }
+  .hover-box:hover
+  {
+    
+
+    background: #8595af;  
+    box-shadow: 0 0 5px#6183be, 0 0 25px #6183be, 0 0 5px #6183be, 0 0 #6183be ;
+  }
