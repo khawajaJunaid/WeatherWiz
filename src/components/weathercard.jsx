@@ -19,7 +19,7 @@ function WeatherWizard  ()
     
     const fetchApi = async (city) =>{
 
-        const url=`http://api.weatherapi.com/v1/forecast.json?key=ad0f9c31f1114323a04154559212206&q=${city}&days=10&aqi=no&alerts=no` 
+        const url=`https://api.weatherapi.com/v1/forecast.json?key=ad0f9c31f1114323a04154559212206&q=${city}&days=10&aqi=no&alerts=no` 
         const response = await fetch(url);
         const resJson= await response.json();
         console.log(resJson);
