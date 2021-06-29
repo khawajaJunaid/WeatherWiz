@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { Box,Form,Text,TextInput,Button,Image,Header} from "grommet";
 import Popup from "./popup";
 // import {Home, Windows} from "grommet-icons"
-import { Grommet} from 'grommet';
-import { grommet } from 'grommet';
+
 import { useDispatch } from "react-redux";
 import '../index.css'
 import { setDaystate } from "../features/counter/DaystateSlice";
@@ -16,10 +15,13 @@ function WeatherWizard  ()
     // const [day,setDay] =React.useState();
     const [daysetter,setDaytsetter]=React.useState();
     const dispatch = useDispatch();
-    
-    const fetchApi = async (city) =>{
+    const baseURL = process.env.REACT_APP_API_URL;
 
-        const url=`https://api.weatherapi.com/v1/forecast.json?key=ad0f9c31f1114323a04154559212206&q=${city}&days=10&aqi=no&alerts=no` 
+
+    const fetchApi = async (city) =>{
+        console.log(baseURL)
+
+        const url=`${baseURL}forecast.json?key=ad0f9c31f1114323a04154559212206&q=${city}&days=10&aqi=no&alerts=no` 
         const response = await fetch(url);
         const resJson= await response.json();
         console.log(resJson);
@@ -140,9 +142,11 @@ function WeatherWizard  ()
                                                 
                                                     {
                                                     value.forecast.forecastday.map( (days) => (
-                                                        <Grommet theme={grommet}>
+                                                        
                                                             
-                                                        <Box  
+                                                        <Box 
+                                                        
+                                                        key={days.date_epoch}
                                                         direction="row" margin="bottom small" pad="xsmall"
                                                         justify="between"
                                                         align="center"
@@ -184,7 +188,7 @@ function WeatherWizard  ()
                                                             
                                                                 
                                                         </Box>
-                                                        </Grommet>
+
                                                         
                                                     ))
                                                     

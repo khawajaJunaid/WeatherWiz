@@ -24,6 +24,7 @@ const Popup = ({    setDaytsetter,display, setDisplayOut }) => (
                 
                 <Box width="30%"
                     direction="row"
+                    key={hours.time_epoch}
                 >
                     <Text>  
                         <h4> {hours.time} : </h4>
