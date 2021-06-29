@@ -1,2 +1,2 @@
 [context.main.environment]
-    REACT_APP_API_URL = "https://api.weatherapi.com/v1"
+    REACT_APP_API_URL = "https://api.weatherapi.com/v1/"
