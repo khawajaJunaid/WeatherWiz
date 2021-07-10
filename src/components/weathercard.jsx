@@ -1,22 +1,27 @@
 import React, { useEffect } from "react";
 import { Box,Form,Text,TextInput,Button,Image,Header} from "grommet";
-import Popup from "./popup";
+
 // import {Home, Windows} from "grommet-icons"
 
+// import { useHistory } from "react-router";
+import {  useHistory} from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import '../index.css'
+import * as Sentry from "@sentry/browser"
+
 import { setDaystate } from "../features/counter/DaystateSlice";
+import { captureException } from "@sentry/browser";
 function WeatherWizard  () 
 {
     
     const [value, setValue] = React.useState(null);
     const [search,setSearch]=React.useState(" ");   
-    const [mopen,setMopen] =React.useState(false);
+    // const [mopen,setMopen] =React.useState(false);
     // const [day,setDay] =React.useState();
-    const [daysetter,setDaytsetter]=React.useState();
+    // const [daysetter,setDaytsetter]=React.useState();
     const dispatch = useDispatch();
     const baseURL = process.env.REACT_APP_API_URL;
-
+    const history =useHistory();
 
     const fetchApi = async (city) =>{
         console.log(baseURL)
@@ -24,11 +29,15 @@ function WeatherWizard  ()
         const url=`${baseURL}forecast.json?key=ad0f9c31f1114323a04154559212206&q=${city}&days=10&aqi=no&alerts=no` 
         const response = await fetch(url);
         const resJson= await response.json();
-        console.log(resJson);
+        if (resJson.error )
+        Sentry.captureException(resJson.error);
+        
+        // console.log(resJson,"this is the error" );
         setValue(resJson);
        
 
     };
+
     useEffect( ()=> {
 
         const intervalId = window.setInterval(() => 
@@ -44,7 +53,7 @@ function WeatherWizard  ()
 
     return(
             <>
-            <Popup setDaytsetter={daysetter} display={mopen} setDisplayOut={(value) => setMopen(value)} />
+            {/* <Popup setDaytsetter={daysetter} display={mopen} setDisplayOut={(value) => setMopen(value)} /> */}
            
             <Header background="#fff"  align="center">
             <Box
@@ -106,6 +115,14 @@ function WeatherWizard  ()
                             
                             <Box direction="row" gap="medium" margin="small" justify="center"  color="#8595af">
                                 <Button justify="center"  type="submit" primary label="Submit" color="#344053" />
+                                <Button justify="center"   primary label="asdadas" color="#344053"
+                                
+                                onClick={() => {
+                                
+                                 captureException(value && value.error);
+                                     // alert('clicked');
+                                   }}
+                                />
                             </Box>
 
                         </Form>
@@ -163,8 +180,9 @@ function WeatherWizard  ()
                                                         round="10px"
                                                         onClick={() => {
                                                            dispatch(setDaystate(days));
-                                                           setDaytsetter(days);
-                                                            setMopen(true);
+                                                        //    setDaytsetter(days);
+                                                        //     setMopen(true);
+                                                            history.push("/popup");
                                                         
                                                             // alert('clicked');
                                                           }}

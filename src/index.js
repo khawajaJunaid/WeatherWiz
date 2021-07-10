@@ -7,9 +7,18 @@ import { Grommet} from 'grommet';
 import { grommet } from 'grommet';
 import store from './app/store'
 import { Provider } from 'react-redux'
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
+// import * as Sentry from "@sentry/react";
 // import { grommet } from 'grommet';
 // import {grommet} from 'C:\Users\Khawaja Junaid\Desktop\weatherapp\weatherwiz\node_modules\grommet\themes'
 
+Sentry.init({
+  dsn: process.env.REACT_APP_SENTRY_DSN,
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
+console.log(process.env.REACT_APP_SENTRY_DSN);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

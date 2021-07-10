@@ -9,6 +9,7 @@ body
     background: #f4f5f7;
     padding: 24px 32px 24px  24px;
     color: #1D3763;
+    margin: 5%;
     max-width: 80% !important;
     box-shadow: 0 100vh 0 100vw rgb(0 0 0 / 80%); 
     border-radius: 10px !important;
@@ -17,7 +18,7 @@ body
     height: 80% !important;
     overflow: auto;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
   }
   .hover-box:hover
   {

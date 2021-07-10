@@ -1,28 +1,48 @@
 import React from "react";
-import { Box, Text,Layer,Image } from "grommet";
+import { Box, Text,Image } from "grommet";
 // import { Grid } from "grommet-icons";
+import { IsMobileHook, IsTabletHook } from "./common/Responsive";
+import { useSelector } from "react-redux";
 
-const Popup = ({    setDaytsetter,display, setDisplayOut }) => (
-    <>
-    {display && (
-      <Layer
-      
-      
-        onEsc={() => setDisplayOut(false)}
-        onClickOutside={() => setDisplayOut(false)}
-        // pad="small"
-        plain
-        className="popup-card"
-        position="center"
-      > 
-        <h3>Hourly stats for    {setDaytsetter.date} : </h3>
-        <Box style={{overflowY:"scroll" }} direction="row" gap="small" margin={"left :100px"} wrap align="start" >
+
+
+
+const Popup = () => {
+
+const isMobile = IsMobileHook();
+const isTablet = IsTabletHook();
+const setDaytsetter=useSelector( (state) => state.Daystate.Daystate   );
+const isMobileorTablet = isMobile || isTablet;
+
+    
+    
+    
+    return (
+   
+    
+   
+   <>
+    
         
-
-        {    
-            setDaytsetter.hour.map( (hours) => (
+           
+            
+        <Box style={{overflowY:"scroll" }} direction="row" gap="small"   wrap align="start"
+     
+             
+        >
+             <Box wrap align="start"  width="100%" alignContent="center"  >
+                <h3 >Hourly stats for {setDaytsetter.date}:</h3> 
+            </Box>
+            
+      
+        {setDaytsetter.hour.map( (hours) => (
                 
-                <Box width="30%"
+                <Box width={isMobileorTablet ? "100%" : "30%"}
+                // wrap align="start"
+                    // background="red"
+                    justify="center"
+                    margin="small"
+                    // border="all"
                     direction="row"
                     key={hours.time_epoch}
                 >
@@ -34,16 +54,15 @@ const Popup = ({    setDaytsetter,display, setDisplayOut }) => (
                         Temperature(°C): {hours? (hours.temp_c):null } 
                             <br/>
                         wind speed(mph): {hours.wind_mph} 
-                        {/* min temp is for 3 days: 
-                        {days.day.mintemp_c}                                                */}
+    
                     </Text>
                 </Box>
             ))
         }
          
         </Box>
-      </Layer>
-     )} 
+   
+     
   </>
-);
+)} ;
 export default Popup;
