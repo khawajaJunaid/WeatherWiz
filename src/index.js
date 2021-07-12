@@ -13,6 +13,7 @@ import { Integrations } from "@sentry/tracing";
 // import { grommet } from 'grommet';
 // import {grommet} from 'C:\Users\Khawaja Junaid\Desktop\weatherapp\weatherwiz\node_modules\grommet\themes'
 
+
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DSN,
   integrations: [new Integrations.BrowserTracing()],

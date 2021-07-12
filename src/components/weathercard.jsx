@@ -10,6 +10,11 @@ import '../index.css'
 import * as Sentry from "@sentry/browser"
 
 import { setDaystate } from "../features/counter/DaystateSlice";
+// import { hotjar } from 'react-hotjar';
+
+// hotjar.initialize(hjid, hjsv);
+
+// hotjar.identify('USER_ID', { userProperty: 'value' });
 // import { captureException } from "@sentry/browser";
 function WeatherWizard  () 
 {
