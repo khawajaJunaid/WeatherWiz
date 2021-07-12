@@ -10,7 +10,7 @@ import '../index.css'
 import * as Sentry from "@sentry/browser"
 
 import { setDaystate } from "../features/counter/DaystateSlice";
-import { captureException } from "@sentry/browser";
+// import { captureException } from "@sentry/browser";
 function WeatherWizard  () 
 {
     
