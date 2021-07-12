@@ -116,12 +116,8 @@ function WeatherWizard  ()
                             <Box direction="row" gap="medium" margin="small" justify="center"  color="#8595af">
                                 <Button justify="center"  type="submit" primary label="Submit" color="#344053" />
                                 
-                                onClick={() => {
+                               
                                 
-                                 captureException(value && value.error);
-                                     // alert('clicked');
-                                   }}
-                                />
                             </Box>
 
                         </Form>
